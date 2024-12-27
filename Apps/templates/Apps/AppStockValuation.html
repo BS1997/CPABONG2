@@ -1,0 +1,144 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/app_stockvaluation.css' %}">
+</head>
+
+<body>
+    <section class="sections">
+        <div class="row">
+            <div class="col-md-2">
+                <!-- <div class="category-box">
+                    <h3>카테고리</h3>
+                    <ul class="category-list">
+                        <li>
+                            <a href="#" class="active">입력 데이터</a>
+                        </li>
+                    </ul>
+                </div> -->
+            </div>
+
+            <div class="col-md-8">
+                <h1>주식 가치 평가</h1>
+                <div class="form-container">
+                    <form id="sjlight-form" method="POST" onsubmit="removeCommas()">
+                        {% csrf_token %}
+                        <!-- 입력 폼 -->
+                        <div class="form-group">
+                            <label for="totalasset">순자산 금액</label>
+                            <input type="text" id="totalasset" placeholder="순자산 금액을 입력하세요" class="number-input" value="{{ vars.순자산 }}" name="totalasset">
+                        </div>
+                        <div class="form-group">
+                            <label for="netprofit-1">1년 전 순이익</label>
+                            <input type="text" id="netprofit-1" placeholder="1년전 순이익을 입력하세요" class="number-input" value="{{ vars.순이익_1 }}" name="netprofit-1">
+                        </div>
+                        <div class="form-group">
+                            <label for="netprofit-2">2년 전 순이익</label>
+                            <input type="text" id="netprofit-2" placeholder="2년전 순이익을 입력하세요" class="number-input" value="{{ vars.순이익_2 }}" name="netprofit-2">
+                        </div>
+                        <div class="form-group">
+                            <label for="netprofit-3">3년 전 순이익</label>
+                            <input type="text" id="netprofit-3" placeholder="3년전 순이익을 입력하세요" class="number-input" value="{{ vars.순이익_3 }}" name="netprofit-3">
+                        </div>
+                        <div class="form-group">
+                            <label for="stocknum">주식 수</label>
+                            <input type="text" id="stocknum" placeholder="주식수를 입력하세요" class="number-input" value="{{ vars.주식수 }}" name="stocknum">
+                        </div>
+                        <div class="form-group">
+                            <label for="valuationtype">평가 방법</label>
+                            <select id="valuationtype" name="valuationtype">
+                                <option value="1">일반법인</option>
+                                <option value="2">부동산과다법인</option>
+                                <option value="3">순자산평가특정법인</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="bigshareholder">최대 주주 할증</label>
+                            <select id="bigshareholder" name="bigshareholder">
+                                <option value="1">할증 없음</option>
+                                <option value="2">10% 할증</option>
+                                <option value="3">15% 할증</option>
+                                <option value="4">20% 할증</option>
+                                <option value="5">30% 할증</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="submit-btn">
+                                {% if vars.submitted %}
+                                    평가결과 업데이트 하기
+                                {% else %}
+                                    평가결과 보기
+                                {% endif %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- 결과 영역 -->
+                {% if vars.submitted %}
+                <div class="resultbox">
+                    {% if not vars.is_valid %}
+                    <div class="error-message">
+                        입력값이 유효하지 않습니다.
+                    </div>
+                    {% else %}
+                    <h2>평가 결과</h2>
+                    <div class="resultbox-content">
+                        <div class="result-card">
+                            <h3>순자산가치</h3>
+                            <p>순자산가치: <span>{{ vars.순자산 | intcomma }} 원</span></p>
+                            <p>영업권: <span>{{ vars.영업권 | intcomma }} 원</span></p>
+                            <p>1주당 순자산가치: <span>{{ vars.주당영업권포함순자산 | intcomma }} 원</span></p>
+                        </div>
+                        <div class="result-card">
+                            <h3>순손익가치</h3>
+                            <p>가중평균순이익: <span>{{ vars.가중평균순이익 | intcomma }} 원</span></p>
+                            <p>1주당 순손익가치: <span>{{ vars.주당순손익가치 | intcomma }} 원</span></p>
+                        </div>
+                        <div class="result-card">
+                            <h3>최종 평가</h3>
+                            <p>평가 방법: <span>{{ vars.최종평가방법 }}</span></p>
+                            <p>1주당 평가액: <span>{{ vars.주당평가액 | intcomma }} 원</span></p>
+                            {% if vars.최대주주할증 > 0 %}
+                            <p>할증 고려 후 1주당 평가액: <span>{{ vars.할증고려후주당평가액 | intcomma }} 원</span></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+
+
+        </div>
+    </section>
+
+    <script>
+        // JavaScript Functions
+        function formatNumber(input) {
+            let value = input.value.replace(/,/g, '');
+            if (!isNaN(value) && value !== '') {
+                input.value = parseFloat(value).toLocaleString('en-US');
+            }
+        }
+
+        function removeCommas() {
+            const inputs = document.getElementsByClassName('number-input');
+            for (let input of inputs) {
+                input.value = input.value.replace(/,/g, '');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const inputs = document.getElementsByClassName('number-input');
+            for (let input of inputs) {
+                input.addEventListener('input', function () {
+                    formatNumber(input);
+                });
+            }
+        });
+    </script>
+</body>
+{% endblock %}

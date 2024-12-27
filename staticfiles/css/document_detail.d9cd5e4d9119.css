@@ -1,0 +1,92 @@
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f8fafc;
+    margin: 0;
+    padding: 0;
+}
+
+/* 섹션 스타일 */
+.sections {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sections h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    color: #003580;
+    margin-bottom: 20px;
+}
+
+.sections h2 {
+    font-size: 1.8rem;
+    color: #004A8F;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.sections p {
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+/* 파일 리스트 스타일 */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #004A8F;
+    font-weight: bold;
+}
+
+ul li a:hover {
+    color: #003580;
+    text-decoration: underline;
+}
+
+/* 버튼 스타일 */
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #004A8F;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 4px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #003580;
+}
+
+.btn-danger {
+    background-color: #d9534f;
+}
+
+.btn-danger:hover {
+    background-color: #c9302c;
+}

@@ -1,0 +1,85 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/document_list.css' %}">
+</head>
+
+<style>
+    
+</style>
+
+<body>
+    <section class="sections">
+        
+        
+        <div class="row">
+            <div class="col-md-3">
+                <br><br>
+                <div class="category-box">
+                    <h3>카테고리</h3>
+                    
+                    <ul class="category-list">
+                        <li>
+                            <a href="{% url 'document_list' %}" class="{% if not selected_category %}active{% endif %}">
+                                All
+                            </a>
+                            <span class="count">({{ total_document_count  }})</span>
+                        </li>
+                        {% for category in categories %}
+                            <li>
+                                <a href="{% url 'document_by_category' category.id %}"
+                                   class="{% if selected_category and selected_category.id == category.id %}active{% endif %}">
+                                   {{ category.name }}
+                                </a>
+                                <span class="count">({{ category.document_count }})</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                
+                {% if selected_category %}
+                    <h1>Dataroom : {{ selected_category.name }}</h1>
+                {% else %}    
+                    <h1>Dataroom</h1>
+                {% endif %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>카테고리</th>
+                            <th>제목</th>
+                            <th>작성일</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        {% for document in documents %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ document.category.name }}</td>
+                            <td><a href="{% url 'document_detail' document.pk %}">{{ document.title }}</a></td>
+                            <td>{{ document.uploaded_at|date:"Y년 m월 d일" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        <br>
+        {% if user.is_authenticated and user.username == 'qhdtn6412' %}
+            <a href="{% url 'upload_document' %}" class="upload-btn">글쓰기</a>
+        {% endif %}
+        <div class="pagination">
+            <a href="#">1</a>
+            <a href="#" class="active">2</a>
+            <a href="#">3</a>
+        </div>
+    </section>
+</body>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<style>
+    .sections {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Document</title>
+</head>
+<section class="sections">
+    <h1>Are you sure you want to delete "{{ document.title }}"?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, delete</button>
+        <a href="{% url 'document_detail' document.pk %}">No, go back</a>
+    </form>
+</section>
+{% endblock %}

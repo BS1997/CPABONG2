@@ -1,0 +1,40 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<script src="https://cdn.ckeditor.com/4.16.2/full-all/ckeditor.js"></script>
+    
+<style>
+    .sections {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Document</title>
+</head>
+<section class="sections">
+    <h1>Upload Document</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ document_form.as_p }}
+        {{ file_formset.management_form }}
+        {% for form in file_formset %}
+            {{ form.as_p }}
+        {% endfor %}
+        <button type="submit">Upload</button>
+    </form>
+    <a href="{% url 'document_list' %}">Back to List</a>
+
+    <!-- CKEditor JavaScript 파일 로드 -->
+    <script src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+    <script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+</section>
+
+{% endblock %}

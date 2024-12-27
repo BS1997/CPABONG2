@@ -1,0 +1,170 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPABONG</title>
+    <style>
+        html {
+            overflow-y: scroll; /* 스크롤바 항상 표시 */
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #ffffff;
+            padding: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 헤더 그림자 추가 */
+        }
+
+        .header-container {
+            display: flex;
+            align-items: flex-end; /* 이미지와 텍스트를 하단 정렬 */
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-logo img {
+            height: 80px; /* 이미지 크기 조정 */
+            margin-right: 20px; /* 이미지와 리스트 간 간격 */
+        }
+
+        nav {
+            flex: 1;
+        }
+
+        .nav-list {
+            display: flex;
+            gap: 30px; /* 리스트 항목 간 간격 */
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-list li {
+            position: relative;
+        }
+
+        .nav-list a {
+            text-decoration: none;
+            color: #004A8F;
+            font-weight: bold;
+            padding: 10px 20px;
+            display: block;
+        }
+
+        .nav-list li:hover > a {
+            color: transparent;
+            background: linear-gradient(90deg, red, orange, yellow, green, blue, green, yellow, orange, red);
+            -webkit-background-clip: text;
+            background-clip: text;
+            background-size: 200% auto;
+            animation: rainbow-flow 3s linear infinite;
+        }
+
+        @keyframes rainbow-flow {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .nav-list ul {
+            display: none;
+            position: absolute;
+            top: 100%; /* 부모 li 바로 아래 */
+            left: 0;
+            background-color: #ffffff; /* 하위 메뉴 배경 */
+            list-style: none;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+        }
+
+        .nav-list li:hover > ul {
+            display: block;
+        }
+
+        .nav-list ul li {
+            margin: 0;
+        }
+
+        .nav-list ul li a {
+            width: 90px;
+            font-size: 0.9rem;
+            color: #004A8F;
+            padding: 2px 2px;
+            display: block;
+        }
+
+        footer {
+            background-color: #2b2b2b;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .nav-list {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="header-logo">
+            <a href="{% url 'cpabong_main' %}">
+                <img src="{% static 'admin/img/CPABONG_logo.png' %}" alt="CPABONG 로고">
+            </a>
+        </div>
+        <nav>
+            <ul class="nav-list">
+                <li><a href="{% url 'about_cpabong' %}">About CPABong</a></li>
+                <li>
+                    <a href="#">선민회계법인</a>
+                    <ul>
+                        <li><a href="#">연혁</a></li>
+                        <li><a href="#">조직</a></li>
+                        <li><a href="#">규정</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Apps</a>
+                    <ul>
+                        <li><a href="{% url 'AppStockValuation' %}">주식가치평가</a></li>
+                    </ul>
+                </li>
+                <li><a href="{% url 'document_list' %}">자료실</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+{% block content %}
+{% endblock %}
+
+<footer>
+    <p>공인회계사 김봉수. All rights reserved.</p>
+    <p>주소: 부산시 동구 조방로14 동일타워 413호 | 전화: 051-939-3319</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,207 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<style>
+    .about-banner {
+        text-align: center;
+        background: linear-gradient(to bottom, #ffffff, #e9f3ff);
+        padding: 50px 20px;
+    }
+    .about-banner h1 {
+        font-size: 2.5rem;
+        color: #444;
+        margin-bottom: 20px;
+    }
+    .about-banner h1 span {
+        color: #07006b;
+    }
+    .sections {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .section {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+    }
+    .section h2 {
+        color: #004A8F;
+        margin-bottom: 15px;
+    }
+    .section ul {
+        list-style: disc;
+        padding-left: 20px;
+        margin: 0;
+    }
+    .section ul li {
+        margin-bottom: 10px;
+        color: #444;
+    }
+    .fixed-period {
+        display: inline-block;
+        width: 150px; /* 고정된 폭 */
+        text-align: left; /* 텍스트 정렬 */
+        color: #001224; /* 기간 색상 */
+        font-weight: bold; /* 강조 */
+    }
+    .description {
+        color: #444;
+    }
+    @media screen and (max-width: 768px) {
+        .sections {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="about-banner">
+    <h1><span>공인회계사 김봉수</span> 소개</h1>
+</div>
+
+<section class="sections">
+
+    <div class="section">
+        <h2>[2024년 - 현재] 선민회계법인</h2>
+        <h1>주요 업무</h1>
+        <ul>
+            {% for item in 선민Work경력사항 %}
+                <li>
+                    <span class="fixed-period">{{ item.0 }}</span>
+                    <span class="description">{{ item.1 }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <br>
+        <h1>위원 경력사항</h1>
+        <ul>
+            {% for item in 선민위원경력사항 %}
+                <li>
+                    <span class="fixed-period">{{ item.0 }}</span>
+                    <span class="description">{{ item.1 }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+
+    <div class="section">
+        <h2>[2023년 - 2024년] 정윤회계법인</h2>
+        <h1>주요 업무</h1>
+        <ul>
+            {% for item in 정윤Work경력사항 %}
+                <li>
+                    <span class="fixed-period">{{ item.0 }}</span>
+                    <span class="description">{{ item.1 }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <br>
+        <h1>위원 경력사항</h1>
+        <ul>
+            {% for item in 정윤위원경력사항 %}
+                <li>
+                    <span class="fixed-period">{{ item.0 }}</span>
+                    <span class="description">{{ item.1 }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+
+
+
+    <div class="section">
+        <h2>[2013년 - 2022년] Lloyd's Register Asia Korea Branch</h2>
+        <h1>Chief Accountant for Korea</h1>
+        <ul>
+            {% for item in 로이드세부경력.0 %}
+                <ul>
+                    <li>{{ item }}</li>
+                </ul>
+            {% endfor %}
+        </ul>
+        <br>
+        <h1>FP&A for Marine</h1>
+        <ul>
+            {% for item in 로이드세부경력.1 %}
+                <ul>
+                    <li>{{ item }}</li>
+                </ul>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+
+
+    <div class="section">
+        <h2>[2007년 - 2012년] 한영회계법인 재무자문본부</h2>
+        <h1>기업 매수 / 매각 자문</h1>
+        <ul>
+            {% for item in 한영재무자문.0 %}
+                <ul>
+                    <li>{{ item }}</li>
+                </ul>
+            {% endfor %}
+        </ul>
+        <br>
+        <h1>기타 채권 등 평가업무</h1>
+        <ul>
+            {% for item in 한영재무자문.1 %}
+                <ul>
+                    <li>{{ item }}</li>
+                </ul>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+    <div class="section">
+        <h2>[2005년 - 2007년] 한영회계법인 감사본부</h2>
+        <h1>회계감사</h1>
+        <ul>
+            {% for item in 한영감사본부.0 %}
+                <ul>
+                    <li>{{ item }}</li>
+                </ul>
+            {% endfor %}
+        </ul>
+        <br>
+        <h1>내부회계관리제도 구축용역 및 세무자문</h1>
+        <ul>
+            {% for item in 한영감사본부.1 %}
+                <ul>
+                    <li>{{ item }}</li>
+                </ul>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>[2005년 9월] 한국공인회계사 합격</h2>
+            <ul>
+            <ul>
+                <li>재무회계 77점</li>
+                <li>원가회계 76점</li>
+                <li>회계감사 62점</li>
+                <li>세법 66점</li>
+                <li>재무관리 89점</li>
+            </ul>
+            </ul>
+        <h2>[2005년 5월] 부산대학교 영어영문학과 졸업</h2>        
+    </div>
+
+    
+</section>
+
+{% endblock %}

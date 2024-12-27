@@ -1,0 +1,14 @@
+.title-style {
+    border-left: 4px solid #ccc;
+    padding-left: 10px;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+.my-subtitle {
+    color: #666;
+    font-size: 16px;
+    margin: 10px 0;
+    font-weight: normal;
+    border-bottom: 1px solid #eee;
+}

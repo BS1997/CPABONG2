@@ -1,0 +1,203 @@
+/* 기존 스타일 유지 */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f8fafc;
+    margin: 0;
+    padding: 0;
+}
+
+/* 섹션 스타일 */
+.sections {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sections h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    color: #003580;
+    margin-bottom: 20px;
+}
+
+.sections h2 {
+    font-size: 1.8rem;
+    color: #004A8F;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.sections p {
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+/* 파일 리스트 스타일 */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #004A8F;
+    font-weight: bold;
+}
+
+ul li a:hover {
+    color: #003580;
+    text-decoration: underline;
+}
+
+/* 버튼 스타일 */
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #004A8F;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 4px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #003580;
+}
+
+.btn-danger {
+    background-color: #d9534f;
+}
+
+.btn-danger:hover {
+    background-color: #c9302c;
+}
+
+/* 댓글 섹션 스타일 추가 */
+.comments-section {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px solid #ddd;
+}
+
+.comments-section h2 {
+    font-size: 1.8rem;
+    color: #004A8F;
+    margin-bottom: 20px;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.comment-form {
+    margin-bottom: 30px;
+}
+
+.comment-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    resize: vertical;
+    min-height: 100px;
+}
+
+.comment-btn {
+    padding: 10px 20px;
+    background-color: #004A8F;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.comment-btn:hover {
+    background-color: #003580;
+}
+
+.login-message {
+    font-size: 1.1rem;
+    color: #444;
+}
+
+.login-message a {
+    color: #004A8F;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-message a:hover {
+    text-decoration: underline;
+}
+
+.comment {
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f8fafc;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.comment-content {
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.comment-meta {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.comment-author {
+    color: #004A8F;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.comment-date {
+    margin-right: 15px;
+}
+
+.comment-delete-btn {
+    color: #d9534f;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.comment-delete-btn:hover {
+    color: #c9302c;
+    text-decoration: underline;
+}
+
+.no-comments {
+    font-size: 1.1rem;
+    color: #666;
+    font-style: italic;
+    text-align: center;
+    margin: 30px 0;
+}
